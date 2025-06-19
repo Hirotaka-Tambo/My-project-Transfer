@@ -7,9 +7,77 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
+    ,<header>
+        <h2>乗り換え<br>効率化サービス</h2>
+
+        <div class = "top-btn">
+            <button class = "btn" onClick="location.href = `./search-trans.html`" aria-label="新規検索するボタン">
+                🔍
+            </button>
+
+            <button class ="btn" onClick = "location.href = `./favorite-list.html`" aria-label="お気に入りへ遷移するボタン">
+                ⭐️
+            </button>
+        </div>
+    </header>
+
     <main>
-        <h1> 登録ページ(未編集)</h1>
+        <!--改善必須※placeholderなどを使用
+        --<form action="/register-route" method="POST">左記はSpring用 
+        もっとユーザー目線で!!新規登録は駅と数字(号車とドア)の登録で済むように!!
+        -->
+        <h1>新規登録を行ってください</h1>
+        <form>
+            <label for="startStation">乗車駅を入力してください</label>
+            <input type="text" id="startStation" name="startStation" required />
+
+            <label for="startPosition">乗車位置を入力してください</label>
+            <input type="text" id="startPosition" name="startPosition" required />
+
+            <!--経由駅はnullでもokというか、デフォルトは空でOK-->
+            <label for="viaStation">経由駅を入力してください</label>
+            <input type="text" id="viaStation" name="viaStation" />
+
+            <label for="viaPosition">経由位置を入力してください</label>
+            <input type="text" id="viaPosition" name="viaPosition" />
+
+            <label for="endStation">降車駅を入力してください</label>
+            <input type="text" id="endStation" name="endStation" required />
+
+            <label for="endPosition">降車位置を入力してください</label>
+            <input type="text" id="endPosition" name="endPosition" required />
+
+            <label for="destination">目的地を入力してください</label>
+            <input type="text" id="destination" name="destination" required />
+
+            <!---下記は、仮のボタン-->
+            <a class = "add-btn btn" href = "Comp-regist.html">NEW Regist!!</a>
+
+            <!---Spting用ボタン-->
+            <!-- <button type="submit" class = "btn">New Regist!!</button> -->
+        </form>
+
+        <!---</form>spring用>
+
+        新規登録したら、ユーザー側にはお気に入りに追加、SQLにもデータとして保存。-->
     </main>
     
+    <footer>
+        <!--demo(星とプラスのアイコン[adobe])-->
+        <div class = "button-group">
+            <button class="regist-btn btn" aria-label="追加登録するボタン">
+                <!--後々javaで実装-->
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </button>
+
+            <button class="circle-star-btn btn" aria-label = "お気に入り登録ボタン">
+            ★           <!--お気に入り機能はjavaで実装-->
+            </button>
+        </div>
+    </footer>
 </body>
 </html>
