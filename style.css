@@ -69,7 +69,7 @@ option{
 .ride{
     display: inline-block;
     padding: 12px 20px;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     color: white;
     text-decoration: none;
     font-weight: bold;
@@ -90,6 +90,7 @@ option{
 
 /*footer*/
 .button-group {
+    position:relative;
     display: flex;
     justify-content: space-between; 
     align-items:center;
@@ -131,6 +132,33 @@ option{
     background-color: #2980b9;
     color: #ffd700;
 }
+
+.popup-message {
+    position: absolute;  /* 親要素の相対位置を基準に浮かせる */
+    background: #333;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    opacity: 0;          /* 最初は透明 */
+    pointer-events: none; /* クリック無効 */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateY(10px);
+    white-space: nowrap;  /* 改行しない */
+    z-index: 100;
+    left: 50%;        /* 横位置調整 */
+    top: -40px;
+    transform-origin: bottom center;
+    transform: translate(-50%, 10px);
+}
+
+/* 表示時にふわっと上に動きながら表示 */
+.popup-message.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+}
+
 
 
 /*favorite-list用*/
