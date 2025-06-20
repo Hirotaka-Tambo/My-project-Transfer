@@ -8,12 +8,13 @@
 </head>
 <body>
     <header>
-        <!---demo-->
-
+        <!---imgなどで構成
+        乗り換え効率化,検索
+        -->
         <h2>乗り換え<br>効率化サービス</h2>
 
         <div class = "top-btn">
-            <button class = "btn" onClick="location.href = `./search-trans.html`" aria-label="新規検索するボタン">
+            <button class = "btn" aria-label="新規検索するボタン">
                 🔍
             </button>
 
@@ -21,9 +22,15 @@
                 ⭐️
             </button>
         </div>
+        
     </header>
 
     <main>
+        <!---後ろの動きはjavaで実装する-->
+        <!---選択欄->optontタグ&springから持ってくる-->
+        
+        <h1> 新規登録の確認を行なってください</h1>
+
         <!--demo(<img> + 出発/目的地---)-->
         <p>和光市駅</p>
         <!--双方向の矢印が欲しいな-->
@@ -47,15 +54,18 @@
 
         <p>降車位置</p>
         <p>JR山手線五反田駅10号車3番ドア</p>
+        
+        <a  class = "btn" href= "Comp-regist.html">NEW Regist!!</a>
+        <!--自動でお気に入り登録させる-->
 
 
     </main>
 
     <footer>
-        <!--demo(プラスボタンと星ボタン)-->
         <!--demo(星とプラスのアイコン[adobe])-->
         <div class = "button-group">
             <button class="regist-btn btn" onClick = "location.href = `./register-trans.html`" aria-label="追加登録するボタン">
+                <!--後々javaで実装-->
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -63,17 +73,11 @@
                 </svg>
             </button>
 
-            <button id = "favoriteBtn" class="circle-star-btn btn" aria-label = "お気に入り登録ボタン">
-                <span id = "starIcon">⭐︎</span>          <!--お気に入り機能はjavaで実装-->
+            <button class="circle-star-btn btn" aria-label = "お気に入り登録ボタン">
+            ★           <!--お気に入り機能はjavaで実装-->
             </button>
-
-            <p id = "responseMsg" class = "popup-message">お気に入りに追加されました</p>
-            <script src = "script.js"></script>
-
         </div>
-
-        
     </footer>
-    
+
 </body>
 </html>
