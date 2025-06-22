@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transfer</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+    <header>
+        <!---demo-->
+
+        <h2>乗り換え<br>効率化サービス</h2>
+
+        <div class = "top-btn">
+            <button class = "btn" onClick="location.href = `./search-trans.html`" aria-label="新規検索するボタン">
+                🔍
+            </button>
+
+            <button class ="btn" onClick = "location.href = `./favorite-list.html`" aria-label="お気に入りへ遷移するボタン">
+                ⭐️
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!--demo(<img> + 出発/目的地---)-->
+        <p>和光市駅</p>
+        <!--双方向の矢印が欲しいな-->
+        <span> ⇅ </span>
+        <br>
+        <p>KDG(五反田駅)</p>
+
+        <br>
+
+        <!--demo(thymeleafのobjectを差し込む)-->
+
+        <p>乗車位置</p>
+        <p>有楽町線和光市駅5号車2番ドア</p>
+
+        <br>
+
+        <p>乗り換え位置</p>
+        <p>JR山手線池袋駅10号車3番ドア</p>
+
+        <br>
+
+        <p>降車位置</p>
+        <p>JR山手線五反田駅10号車3番ドア</p>
+
+
+    </main>
+
+    <footer>
+        <!--demo(プラスボタンと星ボタン)-->
+        <!--demo(星とプラスのアイコン[adobe])-->
+        <div class = "button-group">
+            <button class="regist-btn btn" onClick = "location.href = `./register-trans.html`" aria-label="追加登録するボタン">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </button>
+
+            <button id = "favoriteBtn" class="circle-star-btn btn" aria-label = "お気に入り登録ボタン">
+                <span id = "starIcon">⭐︎</span>          <!--お気に入り機能はjavaで実装-->
+            </button>
+
+            <p id = "responseMsg" class = "popup-message">お気に入りに追加されました</p>
+            <script src = "script.js"></script>
+
+        </div>
+
+        
+    </footer>
+    
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transfer</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+    <header>
+        <!---imgなどで構成
+        乗り換え効率化,検索
+        -->
+        <h2>乗り換え<br>効率化サービス</h2>
+
+        <div class = "top-btn">
+            <button class = "btn" aria-label="新規検索するボタン">
+                🔍
+            </button>
+
+            <button class ="btn" onClick = "location.href = `./favorite-list.html`" aria-label="お気に入りへ遷移するボタン">
+                ⭐️
+            </button>
+        </div>
+        
+    </header>
+
+    <main>
+        <!---後ろの動きはjavaで実装する-->
+        <!---選択欄->optontタグ&springから持ってくる-->
+        
+        <h2> 新規登録が完了しました。</h2>
+        
+        <a  class = "btn" href= "favorite-list.html">お気に入りへ</a>
+
+
+    </main>
+
+    <footer>
+        <!--demo(星とプラスのアイコン[adobe])-->
+        <div class = "button-group">
+            <button class="regist-btn btn" onClick = "location.href = `./register-trans.html`" aria-label="追加登録するボタン">
+                <!--後々javaで実装-->
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </button>
+
+            <button class="circle-star-btn btn" aria-label = "お気に入り登録ボタン">
+            ★           <!--お気に入り機能はjavaで実装-->
+            </button>
+        </div>
+    </footer>
+
+</body>
+</html>

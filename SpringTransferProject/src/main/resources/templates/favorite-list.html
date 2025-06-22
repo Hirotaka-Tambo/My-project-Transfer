@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transfer</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+    <!--demo-->
+    <header>
+        <h2>乗り換え<br>効率化サービス</h2>
+
+        <div class = "top-btn">
+            <button class = "btn" onClick="location.href = `./search-trans.html`" aria-label="新規検索するボタン">
+                🔍
+            </button>
+
+            <button class ="btn" aria-label="お気に入りへ遷移するボタン">
+                ⭐️
+            </button>
+        </div>
+
+    </header>
+
+    <main>
+        <!-----
+        ---お気に入り機能を実装、登録したお気に入り一覧が表示されて、
+        対象をOnclickすると、display.html(暫定)に遷移する
+        あとは削除機能とかも入れるべきよね-->
+        <a href="/destination-url" class="card">
+            <div class="card-content">
+                <h3>有楽町線 和光市駅</h3>
+                <h3>乗り換え：池袋 → 五反田</h3>
+            </div>
+        </a>
+
+        <a href="/destination-url" class="card">
+            <div class="card-content">
+                <h3>有楽町線 和光市駅</h3>
+                <h3>乗り換え：池袋 → 五反田</h3>
+            </div>
+        </a>
+
+        <a href="/destination-url" class="card">
+            <div class="card-content">
+                <h3>有楽町線 和光市駅</h3>
+                <h3>乗り換え：池袋 → 五反田</h3>
+            </div>
+        </a>
+
+        <a href="/destination-url" class="card">
+            <div class="card-content">
+                <h3>有楽町線 和光市駅</h3>
+                <h3>乗り換え：池袋 → 五反田</h3>
+            </div>
+        </a>
+
+        <a href="/destination-url" class="card">
+            <div class="card-content">
+                <h3>有楽町線 和光市駅</h3>
+                <h3>乗り換え：池袋 → 五反田</h3>
+            </div>
+        </a>
+
+        <a href="/destination-url" class="card">
+            <div class="card-content">
+                <h3>有楽町線 和光市駅</h3>
+                <h3>乗り換え：池袋 → 五反田</h3>
+            </div>
+        </a>
+
+    </main>
+
+    <footer>
+        <!--demo(星とプラスのアイコン[adobe])-->
+        <div class = "button-group">
+            <button class="regist-btn btn" onClick = "location.href = `./register-trans.html`" aria-label="追加登録するボタン">
+                <!--後々javaで実装-->
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </button>
+
+            <button class="circle-star-btn btn" aria-label = "お気に入り登録ボタン">
+            ★           <!--お気に入り機能はjavaで実装-->
+            </button>
+        </div>
+    </footer>
+
+
+</body>
+</html>
