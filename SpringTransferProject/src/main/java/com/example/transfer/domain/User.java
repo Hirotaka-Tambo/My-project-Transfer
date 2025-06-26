@@ -4,8 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+// ★この行を新しく追加してください★
+import jakarta.persistence.Table;
 
 @Entity // データベースのテーブルに対応するクラスであることを示す
+@Table(name = "app_users")
 public class User {
 
     @Id // 主キーであることを示す
