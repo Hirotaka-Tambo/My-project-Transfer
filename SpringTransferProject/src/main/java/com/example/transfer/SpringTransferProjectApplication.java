@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean; // これを追加
 
-import com.example.transfer.domain.User;
+import com.example.transfer.entity.User;
 import com.example.transfer.repository.UserRepository;
 
 @SpringBootApplication
