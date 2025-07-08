@@ -8,9 +8,13 @@ import com.example.transfer.repository.TransferRepository;
 @Service
 public class TransferService {
 	
-	// 依存性を注入(finalで定数化、privateのため、下記から情報を取得する必要がある)
-	// TransferServiceメソッドで、TransferRepositoryから値(今回はsqlに格納されているデータ)を取得してくる、
-	// それを privatefinal で保守性を高めてここで格納。
+	/*TransferRepositoryをコンストラクタ経由で依存性注入する。
+	  private + final とすることで、外部からの書き換えを防ぎ、保守性・安全性を高めている。
+	  TransferService内のメソッドから、transferRepositoryを通じて
+	  SQL（DB）にアクセスできるようにするための準備。
+	  ※Springはコンストラクタの引数と一致する型のBeanを自動的に注入する。
+	 */
+	
 	private final TransferRepository transferRepository;
 	
 	
