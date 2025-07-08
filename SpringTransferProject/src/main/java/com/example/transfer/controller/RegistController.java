@@ -13,7 +13,7 @@ public class RegistController {
 	
 	/*乗り換え登録画面の前準備(必要な情報を探してくる)をリクエスト*/
 	@GetMapping("/regist-transfer")
-	public String registTansfer(@ModelAttribute RegistForm form){
+	public String registTansfer(RegistForm form){
 		return "register-trans"; //"登録ページ用のHTMLに戻す"
 		
 	}

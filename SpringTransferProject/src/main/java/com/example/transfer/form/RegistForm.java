@@ -6,20 +6,24 @@ import lombok.Data;
 public class RegistForm {
 	private Integer id;
 	
-	private String starrt_line;
-	private String start_station;
-	private Integer start_car;
-	private Integer start_door;
 	
-	private String via_line;
-	private String via_station;
-	private Integer via_car;
-	private Integer via_door;
+	// sqlのsnake_caseからjava規約のcamelCaseに書式の変更(entityで実行済み)
 	
-	private String end_line;
-	private String end_station;
-	private Integer end_car;
-	private Integer end_door;
+	
+	private String startLine;
+	private String startStation;
+	private Integer startCar;
+	private Integer startDoor;
+	
+	private String viaLine;
+	private String viaStation;
+	private Integer viaCar;
+	private Integer viaDoor;
+	
+	private String endLine;
+	private String endStation;
+	private Integer endCar;
+	private Integer endDoor;
 	
 	private String destination;
 	
