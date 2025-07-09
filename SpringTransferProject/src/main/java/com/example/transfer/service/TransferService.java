@@ -17,9 +17,11 @@ public class TransferService {
 	
 	private final TransferRepository transferRepository;
 	
-	
+	// コンストラクタインジェクション
 	public TransferService(TransferRepository transferRepository) {
 		this.transferRepository = transferRepository;
 	}
+	
+	
 
 }
