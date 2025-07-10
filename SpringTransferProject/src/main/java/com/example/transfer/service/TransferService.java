@@ -5,6 +5,13 @@ import org.springframework.stereotype.Service;
 import com.example.transfer.repository.TransferRepository;
 
 
+/*ビジネスロジックの記述
+ * ビジネスロジックとは・・・設定したビジネスルールを理論としてservice層で定義すること。
+ * ビジネスルール・・・開発者自身が設定する、サービス用に策定するルール。
+ *　　　　　　　　　　お気に入り登録の上限や例外処理、バリデーションなど、
+ *                 サービス提供においての「ルールブック」のようなもの。  
+*/
+
 @Service
 public class TransferService {
 	
