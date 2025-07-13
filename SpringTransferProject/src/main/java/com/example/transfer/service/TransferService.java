@@ -56,13 +56,25 @@ public class TransferService {
 		 */
 		if(form.getViaStation() != null && !form.getViaStation().isEmpty()) {
 			if(form.getViaStation().equals(form.getStartStation()) || form.getViaStation().equals(form.getEndStation())) {
-				throw new BusinessValidationException("経由駅は、出発地と到着地と異なる駅を入力してください");
+				throw new BusinessValidationException("経由駅は、出発駅と到着駅と異なる駅を入力してください");
 			}
 		}
 		
 		/*
-		 * 目的地のチェック 
+		 * 目的地のチェック(到着駅と目的地は同じでOK)
 		 */
+		
+		// 目的地と出発駅が異なることの確認
+		
+		if(form.getDestination() != null && form.getDestination().equals(form.getStartStation())) {
+			throw new BusinessValidationException("目的地と出発地は同じにはできません");
+		}
+		
+		// 目的地と経由地が異なることの確認
+		
+		if(form.getDestination() != null && form.getDestination().equals(form.getEndStation())) {
+			throw new BusinessValidationException("目的地と到着地は同じにはできません");
+		}
 	}
 	
 	
