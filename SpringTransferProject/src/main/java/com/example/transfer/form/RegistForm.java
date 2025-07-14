@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class RegistForm {
 	
-	// IDは通常、フォームの入力には使用せず、表示や更新時に使うことが多い。(バリデーション不要)
+	// IDは通常、フォームの入力には使用せず、表示や更新時に使うことが多い。(バリデーション不要、そのままでok)
 	private Integer id;
 	
 	
