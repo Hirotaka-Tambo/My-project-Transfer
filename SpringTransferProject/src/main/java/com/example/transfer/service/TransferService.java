@@ -3,6 +3,7 @@ package com.example.transfer.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.transfer.entity.TransferRoute;
 import com.example.transfer.exception.BusinessValidationException;
 import com.example.transfer.form.RegistForm;
 import com.example.transfer.repository.TransferRepository;
@@ -75,6 +76,35 @@ public class TransferService {
 		if(form.getDestination() != null && form.getDestination().equals(form.getEndStation())) {
 			throw new BusinessValidationException("目的地と到着地は同じにはできません");
 		}
+		
+		
+		// contorollerから受け取ったデータをEntityに変換するフェーズ
+		
+		TransferRoute transferRoute = new TransferRoute();
+		
+		transferRoute.setStartLine(form.getStartLine());
+		transferRoute.setStartStation(form.getStartStation());
+		transferRoute.setStartCar(form.getStartCar());
+		transferRoute.setStartDoor(form.getStartDoor());
+		
+		transferRoute.setViaLine(form.getViaLine());
+		transferRoute.setViaStation(form.getViaStation());
+		transferRoute.setViaCar(form.getViaCar());
+		transferRoute.setViaDoor(form.getViaDoor());
+		
+		transferRoute.setEndLine(form.getEndLine());
+		transferRoute.setEndStation(form.getEndStation());
+		transferRoute.setEndCar(form.getEndCar());
+		transferRoute.setEndDoor(form.getEndDoor());
+		
+		transferRoute.setDestination(form.getDestination());
+		
+		
+		// Repositoryを介してのデータベースに保存
+		
+		transferRepository.save(transferRoute);
+		
+		
 	}
 	
 	
