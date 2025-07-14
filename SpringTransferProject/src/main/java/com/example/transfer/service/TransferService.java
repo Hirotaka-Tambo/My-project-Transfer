@@ -42,7 +42,7 @@ public class TransferService {
 	 */
 	
 	@Transactional
-	public void validateRegiseForm(RegistForm form) throws BusinessValidationException{
+	public void validateRegistForm(RegistForm form) throws BusinessValidationException{
 		/*
 		 * ビジネスロジックのバリデーション
 		 * 出発駅と到着駅のチェック 同じ駅になっていないかの確認

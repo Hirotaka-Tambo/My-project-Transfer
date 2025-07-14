@@ -4,9 +4,11 @@ import jakarta.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.transfer.exception.BusinessValidationException;
@@ -15,6 +17,8 @@ import com.example.transfer.service.TransferService;
 
 
 @Controller
+// フォームが入力画面→確認画面と遷移するため、sessionAttributesのアノーテーションを追加する。(データを引き継ぐため)
+@org.springframework.web.bind.annotation.SessionAttributes("registForm")
 public class RegistController {
 	
 	private final TransferService transferService;
@@ -34,13 +38,11 @@ public class RegistController {
 	 */
 	
 	@GetMapping("/regist-transfer")
-	public String showRegistForm(Model model){
-		// 初回表示や、レダイレクトでの画面表示の時に記入中のフォームっがないのか否かをチェックする
-		// なければ、新しい初期画面状態のformを追加してあげる。
+	public String showRegistForm(Model model) {
 		
-		if(!model.containsAttribute("registForm")) {
-			model.addAttribute("registForm", new RegistForm());
-		}
+		 // @ModelAttribute("registForm") public RegistForm setupForm() がフォームオブジェクトを準備するため、
+        // ここでの model.addAttribute は基本的に不要だが、
+        // リダイレクトで戻ってきた際にFlash Attributesで渡されたメッセージを表示する準備は必要。
 		
 		return "register-trans"; //"登録画面用のHTMLに戻す"
 		
@@ -48,62 +50,73 @@ public class RegistController {
 	
 	
 	/*
-	 * 乗り換え情報を登録して、送信するまで。(POSTリクエスト)
-	 * フォーム入力→おおまかなフォームバリデーションの細かいバリデーション(serviceに記述)の確認はservice層が細かい確認をしてくれる。
-	 * 
-	 * @param form 入力されたRegistFormのデータ
-	 * @param bindingResult ファームバリデーションの結果
-	 * @param model オブジェクト(thymeleafにデータ送る)
-	 * @param redirectAttributes リダイレクト時に属性を渡すためのオブジェクト
-	 * @return 結果に応じて、遷移するページのURL
+	 * 乗り換え情報の確認処理 (POSTリクエスト)。
+     * フォームの入力値を受け取り、フォームレベルとビジネスレベルのバリデーションを実行後、
+     * エラーがなければ確認画面に遷移します。
+     *
+	 * * @param form               入力されたRegistFormデータ
+     * @param bindingResult      フォームバリデーションの結果
+     * @param model              Thymeleafにデータを渡すためのModelオブジェクト
+     * @return 処理結果に応じたテンプレート名
 	 */
 	
-	
-	// 乗り換え画面を表示するためのリクエスト
-	@PostMapping("/regist-transfer")
-	public String registTransfer(
-			@ModelAttribute("regisitForm") @Valid RegistForm form,
-			BidingResult bindingResult, Model model, RedirectAttributes reditectAttributes){
-		
-		// フォームバリデーションのチェック
-		if(bindingResult.hasErrors()) {
-			// エラーがあれば、入力値はそのままでエラーメッセージを持ちながら、登録画面に戻る。
-			// @ModelAttributeで、フォーみは自動的にmodelに追加される。
-			model.addAttribute("errormessage", "入力内容に誤りがあります。ご確認ください:");
-			
-			return "register-trans";
-		}
-		
-		// サービス層へ委譲する(細かい中身のバリデーションチェック)
-		// エラーを拾う(try-catch)
-		
-		try {
-			transferService.registerTransfer(form);
-			// 登録に問題ない時は、
-		}
-		
-		
-	}
-	
-	@PostMapping("/regist-trans/confirm")
+	@PostMapping("/regist-transfer/confirm")
 	public String confirmTransfer(
 		@ModelAttribute("registForm") @Valid RegistForm form,
 		BindingResult bindingResult,
         Model model) {
+		// バリデーションのチェック
         if(bindingResult.hasErrors()) {
         	model.addAttribute("errorMessage", "入力に誤りがあります。ご確認ください");
         	return "regist-trans";
         	}
         
+        // service層でのビジネスロジックのバリデーション(保存はまだ行わない)
         try {
         	// Servicew専用のメソッドを呼ぶ(下記のバリデーションだけを確認してほしいため)
         	transferService.validateRegistForm(form);
-        		// バリデーションを通過できれば確認画面んは遷移
+        		// バリデーションを通過できれば確認画面は遷移
         		return "confirm-regist";
         }catch(BusinessValidationException e) {
         	model.addAttribute("errorMessage", e.getMessage());
+        	return "regist-trans";
         }
         
-        }
+	}
+	
+	
+	/*
+	 * 乗り換え情報の登録実行処理
+	 * 確認画面で「regist」が押されたら、SQLへの保存を実行する。
+	 * 
+	 * @param form セッションで保持されていた入力データ(RegistForm)
+	 * @param bindingResukt(形式的に引数として残す)
+	 * @param edirectAttributes リダイレクト時に属性を渡すオブジェクト
+	 * @param status セッションからresisiformをクリアする時に使われる
+	 * @return 結果に応じたURLへの遷移
+	 */
+	
+	@PostMapping("/regist-transfer/execute") //SQL登録へのあたらしいメソッド
+	public String executeRegisterTransfer(
+		@ModelAttribute("registForm") RegistForm form,
+		BindingResult bindingResult,
+		RedirectAttributes redirectAttributes,
+		SessionStatus status) {
+		
+		if(bindingResult.hasErrors()) {
+			// エラーがあればエラーメッセージをフラッシュ属性で渡した上で、入力画面い強制遷移
+			redirectAttributes.addFlashAttribute("errorMessage", "入力内容に誤りがあります。再度ご確認ください。");
+			
+			// フォームのセッションデータは残っている(@ModelAttribute("registForm)ため、そのデータも合わせてリダイレクト先に表示
+			
+			return "redirect:/regist-transfer";
+		}
+		
+		// 7/15はここから記述
+		return "redirect;/display-trans";
+		
+	}
 
+	
+	
 }
