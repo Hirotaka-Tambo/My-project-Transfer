@@ -42,7 +42,7 @@ public class TransferService {
 	 */
 	
 	@Transactional
-	public void registerTransfer(RegistForm form)throws BusinessValidationException{
+	public void validateRegiseForm(RegistForm form) throws BusinessValidationException{
 		/*
 		 * ビジネスロジックのバリデーション
 		 * 出発駅と到着駅のチェック 同じ駅になっていないかの確認
@@ -76,10 +76,11 @@ public class TransferService {
 		if(form.getDestination() != null && form.getDestination().equals(form.getEndStation())) {
 			throw new BusinessValidationException("目的地と到着地は同じにはできません");
 		}
-		
+	}	
 		
 		// contorollerから受け取ったデータをEntityに変換するフェーズ
-		
+	@Transactional
+	public void registerTransfer(RegistForm form)throws BusinessValidationException{	
 		TransferRoute transferRoute = new TransferRoute();
 		
 		transferRoute.setStartLine(form.getStartLine());
