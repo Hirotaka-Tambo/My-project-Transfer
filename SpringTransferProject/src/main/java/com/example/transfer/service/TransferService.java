@@ -1,5 +1,7 @@
 package com.example.transfer.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -81,6 +83,10 @@ public class TransferService {
 		// contorollerから受け取ったデータをEntityに変換するフェーズ
 	@Transactional
 	public void registerTransfer(RegistForm form)throws BusinessValidationException{	
+		
+		validateRegistForm(form);
+		
+		
 		TransferRoute transferRoute = new TransferRoute();
 		
 		transferRoute.setStartLine(form.getStartLine());
@@ -105,12 +111,16 @@ public class TransferService {
 		
 		transferRepository.save(transferRoute);
 		
-		
 	}
 	
 	
+	// 登録している乗り換え情報の取得
+	// SQLを読み取るもののため、@transactionalを用意。
 	
-	
-	
+	@Transactional(readOnly = true)
+	public List<TransferRoute>findAlltransfers(){
+		// Repositoryから全ての登録情報を持ち出してくる
+		return transferRepository.findAll();
+	}
 
 }
