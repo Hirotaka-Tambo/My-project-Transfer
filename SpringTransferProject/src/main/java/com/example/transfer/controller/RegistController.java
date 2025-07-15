@@ -109,14 +109,43 @@ public class RegistController {
 			
 			// フォームのセッションデータは残っている(@ModelAttribute("registForm)ため、そのデータも合わせてリダイレクト先に表示
 			
-			return "redirect:/regist-transfer";
+			return "redirect:/regist-trans";
 		}
 		
-		// 7/15はここから記述
-		return "redirect;/display-trans";
+		try {
+			// service層のSQL保存まで含むメソッドを呼び出す
+			// バリデーションを呼び出しているので、ここで最終チェック。
+			transferService.registerTransfer(form);
+			
+			//登録が成功したら、セッションからフォームデータをクリア
+			status.setComplete();
+			
+			redirectAttributes.addFlashAttribute("successMessage", "乗り換え情報の登録に成功しました");
+			return "redirect:/display-trans"; // 登録後の乗り換え一覧画面などにリダイレクト
+		}catch (BusinessValidationException e) {
+			// service層における、ビジネスロジック部分のバリデーションエラーについての対処
+			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+			
+			return "redirect:/regist-trans";
+		}catch(Exception e) {
+			// そのほかの予期せぬエラー
+			redirectAttributes.addFlashAttribute("errorMessage", "乗り換え情報の登録中に予期せぬエラーが発生しました。");
+			e.printStackTrace(); // 開発中はスタックトレースを出力して原因を特定する(エラー原因がわかるようになるコード)
+			
+			return "reditrect:/regist-trans";
+		}
 		
 	}
 
+	// 表示する一覧
+	
+	@GetMapping("diaplay-trans")
+	public String diaplayTransfers(Model model) {
+		//　登録された乗り換え情報の一覧を表示する
+		
+		
+		return "display-trans";
+	}
 	
 	
 }
