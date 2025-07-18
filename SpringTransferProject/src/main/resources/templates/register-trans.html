@@ -34,16 +34,29 @@
 			<div th:if="${erroeMessage}" class = "error-message" th:text = "${errorMessage}"></div>
 			
 			
-			<!----7/17移行、下記から記述の修正を行うこと!!!-->
+			<!----Line,Station,Car,Doorの順番で記入-->
+			
+			<!--Start-->
+			
+			<label for="startLine">乗車路線を入力してください<span class = "required">*</span></label>
+			<input type = "text" id = "startline" th:field ="*{startLine}" placeholder="例:山手線"/>
+			<div class="error-message" th:errors = "*{startLine}"></div>
+			
+			<label for="startStation">乗車駅を入力してください<span class = "required">*</span></label>
+			<input type = "text" id = "start" th:field ="*{startStation}" placeholder="例:新宿駅"/>
+			<div class="error-message" th:errors = "*{startStatioin}"></div>
+			
+			<label for="startCar">乗車車両番号を入力してください<span class = "required">*</span></label>
+		　　 <input type = "text" id = "start" th:field ="*{startCar}" placeholder="例:5号車"　min ="1"/>
+			<div class="error-message" th:errors = "*{startCar}"></div>
+						
+			<label for="startDoor">乗車ドア番号を入力してください<span class = "required">*</span></label>
+			<input type = "text" id = "start" th:field ="*{startDoor}" placeholder="例:1番ドア" min = "1"/>
+			<div class="error-message" th:errors = "*{startDoor}"></div>
 			
 			
-            <label for="startStation">乗車駅を入力してください</label>
-            <input type="text" id="startStation" name="startStation" required />
-
-            <label for="startPosition">乗車位置を入力してください</label>
-            <input type="text" id="startPosition" name="startPosition" required />
-
             <!--経由駅はnullでもokというか、デフォルトは空でOK-->
+			
             <label for="viaStation">経由駅を入力してください</label>
             <input type="text" id="viaStation" name="viaStation" />
 
