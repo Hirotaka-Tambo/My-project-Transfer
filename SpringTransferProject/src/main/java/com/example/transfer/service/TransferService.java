@@ -52,6 +52,11 @@ public class TransferService {
 		if(form.getStartStation() != null && form.getStartStation().equals(form.getEndStation())) {
 			throw new BusinessValidationException("出発駅と到着駅は異なる駅を入力してください");
 		}
+		
+		/*
+		 * 経由路線と到着路線の統一のバリデーション
+		 */
+		
 		/*
 		 * 経由駅のチェック①出発駅および到着駅とそれぞれ異なる駅であることの確認
 		 * [注意事項]経由駅はnullでもいいと設定したため、nullチェックをスルーできるようにしないといけない

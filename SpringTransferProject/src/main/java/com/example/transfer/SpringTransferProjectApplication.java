@@ -8,7 +8,7 @@ import com.example.transfer.entity.User;
 import com.example.transfer.repository.UserRepository;
 
 @SpringBootApplication
-public class SpringTransferProjectApplication { // あなたのメインクラス名に合わせる
+public class SpringTransferProjectApplication { 
 
     public static void main(String[] args) {
         SpringApplication.run(SpringTransferProjectApplication.class, args);
