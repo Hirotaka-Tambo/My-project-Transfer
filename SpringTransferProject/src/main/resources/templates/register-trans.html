@@ -43,15 +43,15 @@
 			<div class="error-message" th:errors = "*{startLine}"></div>
 			
 			<label for="startStation">乗車駅を入力してください<span class = "required">*</span></label>
-			<input type = "text" id = "start" th:field ="*{startStation}" placeholder="例:新宿駅"/>
+			<input type = "text" id = "startStation" th:field ="*{startStation}" placeholder="例:五反田駅"/>
 			<div class="error-message" th:errors = "*{startStatioin}"></div>
 			
 			<label for="startCar">乗車車両番号を入力してください<span class = "required">*</span></label>
-		　　 <input type = "text" id = "start" th:field ="*{startCar}" placeholder="例:5号車"　min ="1"/>
+		　　 <input type = "text" id = "startCar" th:field ="*{startCar}" placeholder="例:5号車"　min ="1"/>
 			<div class="error-message" th:errors = "*{startCar}"></div>
 						
 			<label for="startDoor">乗車ドア番号を入力してください<span class = "required">*</span></label>
-			<input type = "text" id = "start" th:field ="*{startDoor}" placeholder="例:1番ドア" min = "1"/>
+			<input type = "text" id = "startDoor" th:field ="*{startDoor}" placeholder="例:1番ドア" min = "1"/>
 			<div class="error-message" th:errors = "*{startDoor}"></div>
 			
 			
@@ -59,28 +59,56 @@
 			<hr>
 			<br>
 			
-			<!--経由駅はnullでもokというか、デフォルトは空でOK-->
+			<!--Via(任意)　nullでもokというか、デフォルトは空でOK-->
+			
+			<label for = "viaLine">経由路線を入力してください※到着路線と同一にしてください</label>
+			<input type = "text" id = "viaLine" th:field ="*{viaLine}" placeholder="例:中央線" />
+			<div class="error-message" th:errors = "*{viaLine}"></div>
+			
 			
             <label for="viaStation">経由駅を入力してください</label>
-            <input type="text" id="viaStation" name="viaStation" />
+            <input type="text" id="viaStation" th:field="*{viaStation}" placeholder="例:新宿駅" />
+			<div class="error-message" th:errors = "*{viaStation}"></div>
+			
+			<label for="viaCar">経由車両番号を入力してください</label>
+			<input type = "text" id = "viaCar" th:field ="*{viaCar}" placeholder="例:1号車" min = "1"/>
+			<div class="error-message" th:errors = "*{viaCar}"></div>
+			
+			<label for="viaDoor">経由ドア番号を入力してください</label>
+			<input type = "text" id = "viaDoor" th:field ="*{viaDoor}" placeholder="例:2番ドア" min = "1"/>
+			<div class="error-message" th:errors = "*{viaDoor}"></div>
+			
+			<br>
+			<hr>
+			<br>
+			
+			<!--End-->
 
-            <label for="viaPosition">経由位置を入力してください</label>
-            <input type="text" id="viaPosition" name="viaPosition" />
-
-            <label for="endStation">降車駅を入力してください</label>
-            <input type="text" id="endStation" name="endStation" required />
-
-            <label for="endPosition">降車位置を入力してください</label>
-            <input type="text" id="endPosition" name="endPosition" required />
-
-            <label for="destination">目的地を入力してください</label>
-            <input type="text" id="destination" name="destination" required />
-
-            <!---下記は、仮のボタン-->
-            <a class = "add-btn btn" href = "confirm-regisit.html">確認画面へ</a>
-
-            <!---Spting用ボタン-->
-            <!-- <button type="submit" class = "btn">New Regist!!</button> -->
+			<label for="endLine">降車路線を入力してください<span class = "required">*</span></label>
+			<input type = "text" id = "endLine" th:field ="*{endLine}" placeholder="例:中央線"/>
+			<div class="error-message" th:errors = "*{endLine}"></div>
+			
+			<label for="endStation">降車駅を入力してください<span class = "required">*</span></label>
+			<input type = "text" id = "endStation" th:field ="*{endStation}" placeholder="例:荻窪駅"/>
+			<div class="error-message" th:errors = "*{endStation}"></div>
+			
+			<label for="endCar">降車車両番号を入力してください<span class = "required">*</span></label>
+			<input type = "text" id = "endCar" th:field ="*{endCar}" placeholder="例:1号車" min = "1"/>
+			<div class="error-message" th:errors = "*{endCar}"></div>
+						
+			<label for="endDoor">経由車両番号を入力してください<span class = "required">*</span></label>
+			<input type = "text" id = "endDoor" th:field ="*{endDoor}" placeholder="例:2番ドア" min = "1"/>
+			<div class="error-message" th:errors = "*{endDoor}"></div>
+			
+			<!--destination--->
+			<label for="destination">経由ドア番号を入力してください</label>
+			<input type = "text" id = "viaDoor" th:field ="*{destination}" placeholder="例:ルミネ荻窪"/>
+			<div class="error-message" th:errors = "*{destination}"></div>
+            
+            <!---Spring用ボタン-->
+            <button type="submit" class = "btn">確認画面へ</button>
+			
+			<p>新規登録すると、お気に入りに追加され、<br>データが保存されます。</p>
         </form>
 
         <!---</form>spring用>
