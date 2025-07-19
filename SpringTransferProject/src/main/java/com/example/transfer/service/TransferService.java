@@ -53,9 +53,22 @@ public class TransferService {
 			throw new BusinessValidationException("出発駅と到着駅は異なる駅を入力してください");
 		}
 		
+		//経由がない場合の、出発点と到着点の路線の一致について
+		if(form.getViaLine() == null) {
+			if(!form.getStartLine().equals(form.getEndLine())) {
+				throw new BusinessValidationException("乗り換えがない場合は、出発路線と到着路線を位置さあせてください");
+			}
+		}
+		
 		/*
 		 * 経由路線と到着路線の統一のバリデーション
 		 */
+		
+		// 下記に記入すること!!
+		
+		if(!form.getViaLine().equals(form.getEndLine())) {
+			throw new BusinessValidationException("経由路線と到着路線は同じ路線を入力してください");
+		}
 		
 		/*
 		 * 経由駅のチェック①出発駅および到着駅とそれぞれ異なる駅であることの確認
@@ -78,7 +91,7 @@ public class TransferService {
 			throw new BusinessValidationException("目的地と出発地は同じにはできません");
 		}
 		
-		// 目的地と経由地が異なることの確認
+		// 目的地と経由駅が異なることの確認
 		
 		if(form.getDestination() != null && form.getDestination().equals(form.getEndStation())) {
 			throw new BusinessValidationException("目的地と到着地は同じにはできません");
