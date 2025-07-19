@@ -39,7 +39,7 @@
 			<!--Start-->
 			
 			<label for="startLine">乗車路線を入力してください<span class = "required">*</span></label>
-			<input type = "text" id = "startline" th:field ="*{startLine}" placeholder="例:山手線"/>
+			<input type = "text" id = "startLine" th:field ="*{startLine}" placeholder="例:山手線"/>
 			<div class="error-message" th:errors = "*{startLine}"></div>
 			
 			<label for="startStation">乗車駅を入力してください<span class = "required">*</span></label>
@@ -47,11 +47,11 @@
 			<div class="error-message" th:errors = "*{startStatioin}"></div>
 			
 			<label for="startCar">乗車車両番号を入力してください<span class = "required">*</span></label>
-		　　 <input type = "text" id = "startCar" th:field ="*{startCar}" placeholder="例:5号車"　min ="1"/>
+		　　 <input type = "number" id = "startCar" th:field ="*{startCar}" placeholder="例:5号車"　min ="1"/><p>号車</p>
 			<div class="error-message" th:errors = "*{startCar}"></div>
 						
 			<label for="startDoor">乗車ドア番号を入力してください<span class = "required">*</span></label>
-			<input type = "text" id = "startDoor" th:field ="*{startDoor}" placeholder="例:1番ドア" min = "1"/>
+			<input type = "number" id = "startDoor" th:field ="*{startDoor}" placeholder="例:1番ドア" min = "1"/><p>番ドア</p>
 			<div class="error-message" th:errors = "*{startDoor}"></div>
 			
 			
@@ -71,11 +71,11 @@
 			<div class="error-message" th:errors = "*{viaStation}"></div>
 			
 			<label for="viaCar">経由車両番号を入力してください</label>
-			<input type = "text" id = "viaCar" th:field ="*{viaCar}" placeholder="例:1号車" min = "1"/>
+			<input type = "number" id = "viaCar" th:field ="*{viaCar}" placeholder="例:1号車" min = "1"/>
 			<div class="error-message" th:errors = "*{viaCar}"></div>
 			
 			<label for="viaDoor">経由ドア番号を入力してください</label>
-			<input type = "text" id = "viaDoor" th:field ="*{viaDoor}" placeholder="例:2番ドア" min = "1"/>
+			<input type = "number" id = "viaDoor" th:field ="*{viaDoor}" placeholder="例:2番ドア" min = "1"/>
 			<div class="error-message" th:errors = "*{viaDoor}"></div>
 			
 			<br>
@@ -93,11 +93,11 @@
 			<div class="error-message" th:errors = "*{endStation}"></div>
 			
 			<label for="endCar">降車車両番号を入力してください<span class = "required">*</span></label>
-			<input type = "text" id = "endCar" th:field ="*{endCar}" placeholder="例:1号車" min = "1"/>
+			<input type = "number" id = "endCar" th:field ="*{endCar}" placeholder="例:1号車" min = "1"/>
 			<div class="error-message" th:errors = "*{endCar}"></div>
 						
 			<label for="endDoor">経由車両番号を入力してください<span class = "required">*</span></label>
-			<input type = "text" id = "endDoor" th:field ="*{endDoor}" placeholder="例:2番ドア" min = "1"/>
+			<input type = "number" id = "endDoor" th:field ="*{endDoor}" placeholder="例:2番ドア" min = "1"/>
 			<div class="error-message" th:errors = "*{endDoor}"></div>
 			
 			<!--destination--->
