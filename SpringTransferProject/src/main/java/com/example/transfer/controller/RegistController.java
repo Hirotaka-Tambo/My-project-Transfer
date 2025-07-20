@@ -111,6 +111,11 @@ public class RegistController {
 			return "redirect:/regist-trans";
 		}
 		
+		
+		/*
+		 *バリデーションチェックを通過したら、確認画面に遷移したいから、return部分の記述修正が必須!! 
+		 */
+		
 		try {
 			// service層のSQL保存まで含むメソッドを呼び出す
 			// バリデーションを呼び出しているので、ここで最終チェック。
@@ -141,7 +146,6 @@ public class RegistController {
 	@GetMapping("diaplay-trans")
 	public String diaplayTransfers(Model model) {
 		//　登録された乗り換え情報の一覧を表示する
-		
 		
 		return "display-trans";
 	}

@@ -30,37 +30,17 @@
         
         <h1> 新規登録の確認を行なってください</h1>
 
-        <!--demo(<img> + 出発/目的地---)-->
-        <p>和光市駅(SQL/乗車駅)</p>
-		<!--thymeleafを使用-->
         
-        <span> ⇅ </span>
-        <br>
-        <p>KDG(五反田駅)(SQL/目的地)</p>
-
-        <br>
-
-        <!--demo(thymeleafのobjectを差し込む)-->
-
-        <p>乗車位置</p>
-        <p>有楽町線和光市駅5号車2番ドア</p>
-
-        <br>
+        <!---thymeleafでの記述必須-->
 		
-		<!--乗り換え位置は必要ない時には表示されないようにしたい-->
+		<!---バリデーションやコントローラー-->
+		<div th:if = "${errorMessage}" class = "error-message" th:text="${errorMessage}"></div>
+		<div th:if = "${successMessage}" class = "success-message" th:text="${successMessage}"></div>
 
-        <p>乗り換え位置</p>
-        <p>JR山手線池袋駅10号車3番ドア</p>
-
-        <br>
-
-        <p>降車位置</p>
-        <p>JR山手線五反田駅10号車3番ドア</p>
-        
-        <a  class = "btn" href= "Comp-regist.html">NEW Regist!!</a>
-        <!--自動でお気に入り登録させる/SQLとの連携!!-->
-
-
+		
+		<!--登録ボタン押したら、successMessage-->
+		
+		
     </main>
 
     <footer>
