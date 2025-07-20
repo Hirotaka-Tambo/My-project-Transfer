@@ -53,7 +53,6 @@ public class RegistController {
 	 * 乗り換え情報の確認処理 (POSTリクエスト)。
      * フォームの入力値を受け取り、フォームレベルとビジネスレベルのバリデーションを実行後、
      * エラーがなければ確認画面に遷移します。
-     *
 	 * * @param form               入力されたRegistFormデータ
      * @param bindingResult      フォームバリデーションの結果
      * @param model              Thymeleafにデータを渡すためのModelオブジェクト
