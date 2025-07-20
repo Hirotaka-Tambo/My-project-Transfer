@@ -3,9 +3,14 @@ package com.example.transfer.form;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+//@Dataでgetter/setterが各クラスで自動生成される
 @Data
+@NoArgsConstructor
 public class RegistForm {
 	
 	// IDは通常、フォームの入力には使用せず、表示や更新時に使うことが多い。(バリデーション不要、そのままでok)
@@ -53,6 +58,38 @@ public class RegistForm {
 	
 	// 目的地の入力は任意(null判定は不要)
 	private String destination;
+	
+	
+	// setterでtrimの設定
+	public void setStartLine(String startLine) {
+        this.startLine = StringUtils.trimToNull(startLine); 
+    }
+	
+	public void setStartStation(String startStation) {
+		this.startStation = StringUtils.trimToNull(startStation);
+	}
+	
+	public void setViaLine(String viaLine) {
+		this.viaLine = StringUtils.trimToNull(viaLine);
+	}
+	
+	public void setViaStation(String viaStation) {
+		this.viaStation = StringUtils.trimToNull(viaStation);
+	}
+	
+	public void setEndLine(String EndLine) {
+		this.endLine = StringUtils.trimToNull(EndLine);
+	}
+	
+	public void setEndStation(String EndStation) {
+		this.endStation = StringUtils.trimToNull(EndStation);
+	}
+	
+	public void setDestination(String Destination) {
+		this.destination = StringUtils.trimToNull(Destination);
+	}
+	
+
 	
 
 }

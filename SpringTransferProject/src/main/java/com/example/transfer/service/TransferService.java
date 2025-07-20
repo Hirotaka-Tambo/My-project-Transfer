@@ -64,8 +64,7 @@ public class TransferService {
 		 * 経由路線と到着路線の統一のバリデーション
 		 */
 		
-		
-		if( form.getViaLine() != null && !form.getViaLine().equals(form.getEndLine())) {
+		if(form.getViaLine() != null && !form.getViaLine().isEmpty() && !form.getViaLine().equals(form.getEndLine())) {
 			throw new BusinessValidationException("経由路線と到着路線は同じ路線を入力してください");
 		}
 		
