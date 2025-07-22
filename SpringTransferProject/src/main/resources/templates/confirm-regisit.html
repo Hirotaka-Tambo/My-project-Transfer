@@ -33,14 +33,55 @@
         
         <!---thymeleafでの記述必須-->
 		
-		<!---バリデーションやコントローラー-->
-		<div th:if = "${errorMessage}" class = "error-message" th:text="${errorMessage}"></div>
-		<div th:if = "${successMessage}" class = "success-message" th:text="${successMessage}"></div>
-
+		<!--入力内容の確認-->
+		
+		<p>出発路線:<span th:text ="*{registForm.startLine}"></span></p>
+		<p>出発駅:<span th:text="*{registForm.startStation}"></span></p>
+		<p>乗車車両番号:<span th:text="*{registForm.startCar}"></span></p>
+		<p>乗車ドア番号:<span th:text="*{registForm.startDoor}"></span></p>
+		
+		<br>
+		<hr>
+		<br>
+		
+		<div th:if="*{registForm.viaStation != null and !registForm.viaStation.isEmpty()}">
+			<p>経由路線:<span th:text="*{registForm.viaLine}"></span></p>
+			<p>経由駅:<span th:text="*{registForm.viaStation}"></span></p>
+			<p>経由乗車車両番号:<span th:text="*{registForm.viaCar}"></span></p>
+		    <p>経由乗車ドア番号:<span th:text="*{registForm.viaDoor}"></span></p>
+		</div>
+		
+		<br>
+		<hr>
+		<br>
+		
+		<p>降車路線:<span th:text="*{registForm.endLine}"></span></p>
+		<p>降車駅:<span th:text="*{registForm.endStation}"></span></p>
+		<p>降車車両番号:<span th:text="*{registForm.endCar}"></span></p>
+		<p>降車ドア番号:<span th:text="*{registForm.endDoor}"></span></p>
+	
+		<br>
+		
+		<div th:if = "*{registForm.destination != null and !registForm.destination.isEmpty()"}>
+			<p>目的地:<span th:text ="*{registForm.destination}"></span></p>
+		</div>
+		
+		 <br>
+		 <hr>
+		 <br>
+		 
+		 <form th:action="@{/regist-transfer/execute}"method="post" >
+			<button type="submit" class = "btn">上記の内容で登録する</button>
+		 </form>
+		 
+		 
+		 <form th:action="@{/regist-transfer}" method = "get">
+			<button type="submit" class = "btn back-btn">入力画面に戻る</button> 
+		 </form>
 		
 		<!--登録ボタン押したら、successMessage-->
 		
-		
+		<p>登録するとお気に入りに追加され、データとして保存されます。</p>
     </main>
 
     <footer>
