@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>transfer</title>
+    <title>display transfer</title>
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
@@ -23,32 +23,9 @@
     </header>
 
     <main>
-        <!--demo(<img> + 出発/目的地---)-->
-        <p>和光市駅</p>
+        <!--thymeleafでobjectを持ってくる
+			postgressのidを認識することで乗り換え情報を取得できるようにしないといけない-->
         
-        <span> ⇅ </span>
-        <br>
-        <p>KDG(五反田駅)</p>
-
-        <br>
-
-        <!--demo(thymeleafのobjectを差し込む)-->
-
-        <p>乗車位置</p>
-        <p>有楽町線和光市駅5号車2番ドア</p>
-
-        <br>
-		
-		<!--乗り換えがない倍は表示されないようにしたい-->
-
-        <p>乗り換え位置</p>
-        <p>JR山手線池袋駅10号車3番ドア</p>
-
-        <br>
-
-        <p>降車位置</p>
-        <p>JR山手線五反田駅10号車3番ドア</p>
-
 
     </main>
 
