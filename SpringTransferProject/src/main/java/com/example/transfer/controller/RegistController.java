@@ -1,5 +1,7 @@
 package com.example.transfer.controller;
 
+import java.util.List;
+
 import jakarta.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -7,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -143,14 +146,26 @@ public class RegistController {
 		}
 		
 	}
-
-	// 表示する一覧
 	
-	@GetMapping("diaplay-trans")
-	public String diaplayTransfers(Model model) {
-		//　登録された乗り換え情報の一覧を表示する
+	//特定の乗り換えルートを表示するメソッド
+	
+	@GetMapping("/display-trans/{id}")
+	public String displaySingleTransfer(@PathVariable("id") Long id, Model model) {
+		//途中までの記述
 		
 		return "display-trans";
+	}
+	
+
+	// 表示する一覧(リストに格納してから、一覧で表示する。)
+	
+	@GetMapping("favorite-list")
+	public String diaplayAllTransfers(Model model) {
+		//　登録された乗り換え情報の一覧を表示する
+		List<TransferRoute>transfers = transferService.findAlltransfers();
+		model.addAttribute("transfers", transfers);
+		
+		return "favorite-list";
 	}
 	
 	
