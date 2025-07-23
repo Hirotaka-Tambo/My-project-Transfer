@@ -124,7 +124,7 @@ public class TransferService {
 		
 		
 		// Repositoryを介してのデータベースに保存
-		
+		// savedRouteでエンティティを受け取る・受け取ったsavedRouteを戻り値として返す
 		TransferRoute savedRoute = transferRepository.save(transferRoute);
 		
 		return savedRoute;
