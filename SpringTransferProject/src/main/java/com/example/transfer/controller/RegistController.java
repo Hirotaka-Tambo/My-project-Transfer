@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.transfer.entity.TransferRoute;
 import com.example.transfer.exception.BusinessValidationException;
 import com.example.transfer.form.RegistForm;
 import com.example.transfer.service.TransferService;
@@ -97,7 +98,7 @@ public class RegistController {
 	
 	@PostMapping("/regist-transfer/execute") //SQL登録へのあたらしいメソッド
 	public String executeRegisterTransfer(
-		@ModelAttribute("registForm") RegistForm form,
+		@ModelAttribute("registForm") @Valid RegistForm form,
 		BindingResult bindingResult,
 		RedirectAttributes redirectAttributes,
 		SessionStatus status) {
@@ -119,18 +120,20 @@ public class RegistController {
 		try {
 			// service層のSQL保存まで含むメソッドを呼び出す
 			// バリデーションを呼び出しているので、ここで最終チェック。
-			transferService.registerTransfer(form);
+			TransferRoute savedRoute = transferService.registerTransfer(form);
 			
 			//登録が成功したら、セッションからフォームデータをクリア
 			status.setComplete();
 			
 			redirectAttributes.addFlashAttribute("successMessage", "乗り換え情報の登録に成功しました");
-			return "redirect:/display-trans"; // 登録後の乗り換え一覧画面などにリダイレクト
+			return "redirect:/display-trans" + savedRoute.getId(); // 登録後の乗り換え一覧画面などにリダイレクト&IDをパス変数として返す
+		
 		}catch (BusinessValidationException e) {
 			// service層における、ビジネスロジック部分のバリデーションエラーについての対処
 			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 			
 			return "redirect:/regist-trans";
+			
 		}catch(Exception e) {
 			// そのほかの予期せぬエラー
 			redirectAttributes.addFlashAttribute("errorMessage", "乗り換え情報の登録中に予期せぬエラーが発生しました。");
