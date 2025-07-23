@@ -1,6 +1,7 @@
 package com.example.transfer.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -138,6 +139,21 @@ public class TransferService {
 	public List<TransferRoute>findAlltransfers(){
 		// Repositoryから全ての登録情報を持ち出してくる
 		return transferRepository.findAll();
+	}
+	
+	/*
+	 * 指定されたIDの乗り換えルートの取得(controller)
+	 * @param id 取得したい乗り換えルートのid
+	 * @return 該当するエンティティ
+	 */
+	
+	@Transactional(readOnly = true)
+	public TransferRoute findTransferById(Long id) {
+		// findByIdはOptionalを返すため、isPresent()で存在チェック後get()で取得
+	    // 見つからない場合はnullを返すようにする
+		Optional<TransferRoute>transferRouteOptional = transferRepository.findById(id);
+		return transferRouteOptional.orElse(null);
+		
 	}
 
 }
