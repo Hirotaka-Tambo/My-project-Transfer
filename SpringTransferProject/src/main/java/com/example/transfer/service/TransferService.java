@@ -96,12 +96,12 @@ public class TransferService {
 		}
 	}	
 		
-		// contorollerから受け取ったデータをEntityに変換するフェーズ
+	// contorollerから受け取ったデータをEntityに変換するフェーズ
+	// 7/23に修正
 	@Transactional
-	public void registerTransfer(RegistForm form)throws BusinessValidationException{	
+	public TransferRoute registerTransfer(RegistForm form)throws BusinessValidationException{	
 		
 		validateRegistForm(form);
-		
 		
 		TransferRoute transferRoute = new TransferRoute();
 		
@@ -125,8 +125,9 @@ public class TransferService {
 		
 		// Repositoryを介してのデータベースに保存
 		
-		transferRepository.save(transferRoute);
+		TransferRoute savedRoute = transferRepository.save(transferRoute);
 		
+		return savedRoute;
 	}
 	
 	
