@@ -151,7 +151,16 @@ public class RegistController {
 	
 	@GetMapping("/display-trans/{id}")
 	public String displaySingleTransfer(@PathVariable("id") Long id, Model model) {
-		//途中までの記述
+		// serviceからIDを使って特定のルートを取得する
+		TransferRoute transferRoute = transferService.findTransferById(id);
+		
+		if(transferRoute == null) {
+			// ルートが見つからなかった時の処理
+			model.addAttribute("errorMessage", "指定された乗り換えルートは見つかりませんでした。");
+			return "error-page";	
+		}
+		
+		model.addAttribute("transferRoute", transferRoute); //該当ルートを取得するロジックはservice層で実装する)
 		
 		return "display-trans";
 	}
