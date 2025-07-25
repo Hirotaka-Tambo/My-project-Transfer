@@ -26,6 +26,56 @@
         <!--thymeleafでobjectを持ってくるpostgressのidを認識することで乗り換え情報を取得できるようにしないといけない-->
         
 		<h1>乗り換えルートの詳細表示</h1>
+		
+		<div th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></div>
+		<div th:if="${transferRoute}" class="detail-section">
+			<!---デバッグでの確認用にIDを表示-->
+			<h2>ルートID:<span th:text="${transferRoute.id}"></span></h2>
+			
+			<div class="detail-item"><strong>出発路線:</strong><span th:text="${transferRoute.startLine}"></span></div>
+			<div class="detail-item"><strong>出発駅:</strong><span th:text="${transferRoute.startStation}"></span></div>
+			<div class="detail-item"><strong>乗車車両:</strong><span th:text="${transferRoute.startCar}"></span>号車</div>
+			<div class="detail-item"><strong>乗車ドア:</strong><span th:text="${transferRoute.startDoor}"></span>ドア</div>
+
+			<br>
+			<hr>
+			<br>
+			
+			<div th:if="${transferRoute.viaStation != null and !transferRoute.viaStation.isEmpty()}">
+				<div class="detail-item"><strong>経由路線:</strong><span th:text="${transferRoute.viaLine}"></span></div>
+				<div class="detail-item"><strong>経由駅:</strong><span th:text="${transferRoute.viaStation}"></span></div>
+				<div class="detail-item"><strong>乗車車両:</strong><span th:text="${transferRoute.viaCar}"></span>号車</div>
+				<div class="detail-item"><strong>乗車ドア:</strong><span th:text="${transferRoute.viaDoor}"></span>ドア</div>
+			</div>
+
+			
+			<br>
+			<hr>
+			<br>
+			
+			<div class="detail-item"><strong>降車路線:</strong><span th:text="${transferRoute.endLine}"></span></div>
+			<div class="detail-item"><strong>降車駅:</strong><span th:text="${transferRoute.endStation}"></span></div>
+			<div class="detail-item"><strong>乗車車両:</strong><span th:text="${transferRoute.endCar}"></span>号車</div>
+			<div class="detail-item"><strong>乗車ドア:</strong><span th:text="${transferRoute.endDoor}"></span>ドア</div>
+
+			
+			<br>
+			<hr>
+			<br>
+			
+			<div class="detail-item"><strong>目的地</strong><span th:text="${transferRoute.destination}"></span></div>
+			
+			<div th:unless="${transferRoute}" class="no-routes-message">
+				<p>指定されたルートは見つかりませんでした。もう一度お確かめください。</p>
+			</div>
+			
+			<div class="nav-buttons">
+				<button class="btn" onClick="location.href=`@{/favorite-list}`" >一覧へ戻る</button>
+			</div>
+			
+			
+		</div>
+		
 
     </main>
 
@@ -46,7 +96,6 @@
             </button>
 
             <p id = "responseMsg" class = "popup-message">お気に入りに追加されました</p>
-            <script src = "script.js"></script>
 
         </div>
 
