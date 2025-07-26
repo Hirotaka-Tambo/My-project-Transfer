@@ -12,7 +12,7 @@
         <h2>乗り換え<br>効率化サービス</h2>
 
         <div class = "top-btn">
-            <button class = "btn" onClick="location.href = `./search-trans.html`" aria-label="新規検索するボタン">
+            <button class = "btn" onClick="location.href = `@{/search-trans}`" aria-label="新規検索するボタン">
                 🔍
             </button>
 
@@ -29,55 +29,25 @@
         対象をOnclickすると、display.html(暫定)に遷移する
         あとは削除機能とかも入れるべきよね
 		SQLを参照した表示ができるように!!---->
-
-        <a href="/destination-url" class="card">
-            <div class="card-content">
-                <h3>有楽町線 和光市駅</h3>
-                <h3>乗り換え：池袋 → 五反田</h3>
-            </div>
-        </a>
-
-        <a href="/destination-url" class="card">
-            <div class="card-content">
-                <h3>有楽町線 和光市駅</h3>
-                <h3>乗り換え：池袋 → 五反田</h3>
-            </div>
-        </a>
-
-        <a href="/destination-url" class="card">
-            <div class="card-content">
-                <h3>有楽町線 和光市駅</h3>
-                <h3>乗り換え：池袋 → 五反田</h3>
-            </div>
-        </a>
-
-        <a href="/destination-url" class="card">
-            <div class="card-content">
-                <h3>有楽町線 和光市駅</h3>
-                <h3>乗り換え：池袋 → 五反田</h3>
-            </div>
-        </a>
-
-        <a href="/destination-url" class="card">
-            <div class="card-content">
-                <h3>有楽町線 和光市駅</h3>
-                <h3>乗り換え：池袋 → 五反田</h3>
-            </div>
-        </a>
-
-        <a href="/destination-url" class="card">
-            <div class="card-content">
-                <h3>有楽町線 和光市駅</h3>
-                <h3>乗り換え：池袋 → 五反田</h3>
-            </div>
-        </a>
-
+		
+		<h1>登録済み乗り換えリスト</h1>
+		<div th:if="${successMessage}" class="success-message" th:text="${successMessage}"></div>
+		<div th:if="${errorMessage}" class="error-message" th:text="${eroorMessage}"></div>
+		
+		<div th:if="{transfers.isEmpty()}" class="no-routes-message">
+			<p>まだ登録されている乗り換えルートがありません</p>
+			<p>新しいルートを登録してみましょう!!</p>
+			<button class="btn" onClick ="location.href=`@{/register-trans}`">新規登録へ</button>
+		</div>
+		
+		<!---カードコンポーネントをthymeleafのeach文で配置-->
+		
     </main>
 
     <footer>
         <!--demo(星とプラスのアイコン[adobe])-->
         <div class = "button-group">
-            <button class="regist-btn btn" onClick = "location.href = `./register-trans.html`" aria-label="追加登録するボタン">
+            <button class="regist-btn btn" onClick = "location.href = `@{/register-trans}`" aria-label="追加登録するボタン">
                 <!--後々javaで実装-->
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
