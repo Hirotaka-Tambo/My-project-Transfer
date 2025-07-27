@@ -34,13 +34,24 @@
 		<div th:if="${successMessage}" class="success-message" th:text="${successMessage}"></div>
 		<div th:if="${errorMessage}" class="error-message" th:text="${eroorMessage}"></div>
 		
-		<div th:if="{transfers.isEmpty()}" class="no-routes-message">
+		<div th:if="${transfers.isEmpty()}" class="no-routes-message">
 			<p>まだ登録されている乗り換えルートがありません</p>
 			<p>新しいルートを登録してみましょう!!</p>
 			<button class="btn" onClick ="location.href=`@{/register-trans}`">新規登録へ</button>
 		</div>
 		
 		<!---カードコンポーネントをthymeleafのeach文で配置-->
+		<div th:unless="${transfer.isEmpty()}" class="route-card-container">
+			<a th:each="route:${transfers}" th:href="@{/display-trans/{id}(id=${route.id})}" class = "route-card">
+				<h3>
+					<span th:text="${route.startStation}">出発駅</span>
+					<span th:text="${route.endStation}">降車駅</span>
+				</h3>
+				<p>目的地:<span th:text="${route.destination}">目的地</span></p>
+				<p>出発路線:<span th:text="${route.startLine}">出発路線</span></p>
+				<p th:if="${route.viaStation != null and !route.viaStation.isEmpty()}">経由駅:<span th:text="${route.viaStation}">経由駅</span></p>
+			</a>
+		</div>
 		
     </main>
 
