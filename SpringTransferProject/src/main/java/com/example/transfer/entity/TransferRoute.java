@@ -8,12 +8,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "transfer_route")
+@NoArgsConstructor
 public class TransferRoute {
 	
 	@Id //メインキー(DBのリーダー格==Primary Key)
