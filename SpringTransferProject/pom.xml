@@ -27,6 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
+        <tomcat.version>10.1.61</tomcat.version>
 		<java.version>21</java.version>
 	</properties>
 	<dependencies>
